@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+#shellcheck shell=sh
+
+# digiKam config
+mkdir -p /config/xdg/config
+if [ ! -f /config/xdg/config/digikamrc ]; then
+    echo "No configuration found, using default"
+    cp -v /default_digikamrc /config/xdg/config/digikamrc
+fi
+
+# database directory
+mkdir -p /config/db
+
+# Fix Ownership
+chown -R app:app /config
+chmod u+rw,g+r,g-w,o-w /config/xdg/config/digikamrc
